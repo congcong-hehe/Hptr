@@ -31,7 +31,7 @@ int main()
 	cudaMalloc((void**)&d_a, sizeof(int));
 
 	cudaError_t err;
-	kernel << <1, 1 >> > ();//(d_a, d_b, d_c);
+	kernel << <1, 1 >> > ();
 	err = cudaGetLastError();
 	if (err != cudaSuccess)
 	{
