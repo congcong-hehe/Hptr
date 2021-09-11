@@ -55,9 +55,7 @@ public:
 			if (--(*count_) == 0)
 			{
 				delete count_;
-				count_ = nullptr;
 				delete ptr_;
-				ptr_ = nullptr;
 			}
 			ptr_ = other.ptr_;
 			count_ = other.count_;
