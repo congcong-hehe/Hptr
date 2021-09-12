@@ -13,17 +13,17 @@ private:
 
 public:
 	__device__ __host__
-	Hptr(T* ptr = nullptr) : ptr_(ptr), count_(new int(1)) {}
-	
+		Hptr(T* ptr = nullptr) : ptr_(ptr), count_(new int(1)) {}
+
 	// ¿½±´¹¹Ôìº¯Êý
 	__device__ __host__
-	Hptr(const Hptr<T>& other) : ptr_(other.ptr_), count_(other.count_)
+		Hptr(const Hptr<T>& other) : ptr_(other.ptr_), count_(other.count_)
 	{
 		(*count_)++;
 	}
 
 	__device__ __host__
-	~Hptr()
+		~Hptr()
 	{
 		(*count_)--;
 		if (0 == *count_)
@@ -36,19 +36,19 @@ public:
 	}
 
 	__device__ __host__
-	T& operator*()
+		T& operator*()
 	{
 		return *ptr_;
 	}
 
 	__device__ __host__
-	T* operator -> ()
+		T* operator -> ()
 	{
 		return ptr_;
 	}
 
 	__device__ __host__
-	Hptr<T>& operator = (const Hptr<T>& other)
+		Hptr<T>& operator = (const Hptr<T>& other)
 	{
 		if (this != &other)
 		{
@@ -63,5 +63,23 @@ public:
 		}
 		return *this;
 	}
-	
+
+	__device__ __host__
+		bool operator != (const Hptr<T>& other)
+	{
+		return ptr_ != other.ptr_;
+	}
+
+	__device__ __host__
+		bool operator == (const Hptr<T>& other)
+	{
+		return ptr_ == other.ptr_;
+	}
+
+	__device__ __host__
+		T* get()
+	{
+		return ptr_;
+	}
+
 };
